@@ -5,7 +5,6 @@ from bank import Bank
 DATA_FILE = "data.json"
 bank = Bank()
 
-# --- Helper Functions ---
 def load_data():
     try:
         with open(DATA_FILE, "r") as f:
@@ -17,10 +16,8 @@ def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
-# --- Streamlit Page Setup ---
 st.set_page_config(page_title="🏦 Bank Management System", layout="centered", page_icon="🏦")
 
-# --- Custom CSS Styling ---
 st.markdown("""
     <style>
         .main {
@@ -64,18 +61,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Header ---
 st.markdown("<h1>🏦 Bank Management System</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center; color:gray;'>Your simple, secure & smart digital banking interface.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# --- Sidebar ---
 menu = ["🏠 Home", "🧾 Create Account", "💰 Deposit Money", "💸 Withdraw Money", "📋 View Details", "✏️ Update Details", "🗑️ Delete Account"]
 choice = st.sidebar.radio("📍 Navigation Menu", menu)
 
-# -------------------------------------------------------------------
-# HOME
-# -------------------------------------------------------------------
 if choice == "🏠 Home":
     st.markdown("""
         <div class="card">
@@ -92,9 +84,6 @@ if choice == "🏠 Home":
         </div>
     """, unsafe_allow_html=True)
 
-# -------------------------------------------------------------------
-# CREATE ACCOUNT
-# -------------------------------------------------------------------
 elif choice == "🧾 Create Account":
     st.markdown("<div class='card'><h3>🧾 Create Account</h3>", unsafe_allow_html=True)
     name = st.text_input("👤 Full Name")
@@ -135,9 +124,6 @@ elif choice == "🧾 Create Account":
             st.info(f"💳 Your Account Number: `{accountNO}` — save it securely.")
     st.markdown("</div>", unsafe_allow_html=True)
 
-# -------------------------------------------------------------------
-# DEPOSIT MONEY
-# -------------------------------------------------------------------
 elif choice == "💰 Deposit Money":
     st.markdown("<div class='card'><h3>💰 Deposit Money</h3>", unsafe_allow_html=True)
     account = st.text_input("🏦 Account Number")
@@ -160,9 +146,6 @@ elif choice == "💰 Deposit Money":
             st.error("❌ Invalid account number or PIN.")
     st.markdown("</div>", unsafe_allow_html=True)
 
-# -------------------------------------------------------------------
-# WITHDRAW MONEY
-# -------------------------------------------------------------------
 elif choice == "💸 Withdraw Money":
     st.markdown("<div class='card'><h3>💸 Withdraw Money</h3>", unsafe_allow_html=True)
     account = st.text_input("🏦 Account Number")
@@ -185,9 +168,6 @@ elif choice == "💸 Withdraw Money":
             st.error("❌ Invalid account number or PIN.")
     st.markdown("</div>", unsafe_allow_html=True)
 
-# -------------------------------------------------------------------
-# VIEW DETAILS
-# -------------------------------------------------------------------
 elif choice == "📋 View Details":
     st.markdown("<div class='card'><h3>📋 View Account Details</h3>", unsafe_allow_html=True)
     account = st.text_input("🏦 Account Number")
